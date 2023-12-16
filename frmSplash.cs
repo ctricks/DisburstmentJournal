@@ -32,6 +32,7 @@ namespace DisburstmentJournal
                 switch (pbProgress.Value)
                 {
                     case 10:
+                        lblCaption.Text = "Checking Database Connection...";
                         string DBConnectionString = Utils.GetConnectionString();
                         if (string.IsNullOrEmpty(DBConnectionString))
                         {
@@ -40,7 +41,6 @@ namespace DisburstmentJournal
                         }
                         else
                         {
-                            lblCaption.Text = "Checking Database Connection...";
                             string DBMessage = string.Empty;
                             if(!clsDatabase.CheckDBConnection(DBConnectionString,out DBMessage))
                             {
@@ -52,6 +52,9 @@ namespace DisburstmentJournal
                             }
                             
                         }
+                        break;
+                    case 20:
+                        //Additional Validation and Checkpoint add here before login.
                         break;
                 }
 
