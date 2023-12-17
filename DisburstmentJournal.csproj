@@ -129,6 +129,16 @@
     <Content Include="Resources\background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\New.jpg" />
+    <None Include="Resources\Save.jpg" />
+    <None Include="Resources\Edit.jpg" />
+    <None Include="Resources\Clear.jpg" />
+    <Content Include="Resources\CompanyLogo.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\MainBG.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\UserLogin.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

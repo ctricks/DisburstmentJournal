@@ -15,8 +15,23 @@ namespace DisburstmentJournal
     public partial class MainScreen : Form
     {
         private int Counter = 0;
+
+        private void LoadBackground()
+        {
+            try
+            {
+                this.BackgroundImage = Image.FromFile(Environment.CurrentDirectory + "\\Resources\\MainBG.jpg");
+                this.BackgroundImageLayout = ImageLayout.Stretch;
+            }
+            catch (Exception)
+            {
+                
+            }            
+        }
+
         private void InitializeForm()
         {
+            LoadBackground();
             timer1.Enabled = true;
             timer1.Interval = 1000;
             timer1.Start();
@@ -54,7 +69,7 @@ namespace DisburstmentJournal
                 string ErrMsg = string.Empty;
                 tssDatabaseStatus.Text = "DATABASE STATUS: " + (!clsDatabase.CheckDBConnection(Utils.GetConnectionString(), out ErrMsg) ? ErrMsg : "Connected");
 
-                if(!string.IsNullOrEmpty(ErrMsg))
+                if(!string.IsNullOrEmpty(ErrMsg) && ErrMsg != "Connected")
                 {
                     MessageBox.Show("Error: " + ErrMsg, "Database Connection Failed", MessageBoxButtons.OK, MessageBoxIcon.Stop);
                     Application.Exit();
