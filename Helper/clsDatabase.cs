@@ -13,6 +13,7 @@ namespace DisburstmentJournal.Helper
 {
     public class clsDatabase
     {   
+        //Helper and Database Functions
         private static DataTable dtResult(string SQLQuery)
         {
             DataTable dtResult = new DataTable();
@@ -80,6 +81,9 @@ namespace DisburstmentJournal.Helper
 
             return result;
         }
+        //End here
+
+        //User Functions
         public static bool CheckUserLogin(string Username,string Password,out string Message)
         {
             bool result = false;
@@ -100,16 +104,20 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+        //End Here
 
+        //ClientProfile Functions
 
-        //Insert
-        public static bool InsertClientProfile(Dictionary<string,string>ClientInfo,List<string>IntValues,bool isEnabled)
+        //Insert Client Profile
+        public static bool InsertUpdateClientProfile(Dictionary<string,string>ClientInfo,List<string>IntValues,bool isEnabled,bool isInsert)
         {
             bool result = false;
             try
             {
                 string Fields = string.Empty;
                 string Vals = string.Empty;
+                string ForUpdate = string.Empty;
+                string CodeID = "0";
 
                 foreach(string Field in ClientInfo.Keys)
                 {
@@ -120,27 +128,43 @@ namespace DisburstmentJournal.Helper
                 foreach(var Values in ClientInfo)
                 {
                     if (Values.Key.ToLower() == "tbid")
+                    {
+                        CodeID = Values.Value.ToString();
                         continue;
+                    }
                     
                     if (IntValues.Contains(Values.Key))
                     {
                         Vals += Values.Value + ",";
-                    }else
+                        ForUpdate += Values.Key.ToString().Replace("tb", "") + " = " + Values.Value.ToString() + ",";
+                    }
+                    else
                     {
                         Vals += "'" +Values.Value.Replace("'","''") + "'";
+                        ForUpdate += Values.Key.ToString().Replace("tb","").Replace("POC","PointOfContact") + " = '" + Values.Value.ToString() + "',";
                     }
                     if(Vals.Substring(Vals.Length-1,1) != ",")
                         Vals += ",";
+
+
+                    
                 }
 
-                string InsertStatement = "Insert into MASTER_CLIENT_TABLE(" + Fields.Replace("POC,","PointOfContact,") + "isEnabled) values ('" + Vals + "" + (isEnabled ? 1:0) + ")";
+                ForUpdate += "isEnabled = " + (isEnabled ? "1" : "0");
+
+                string SQLStatement = string.Empty;
+
+                if (isInsert)
+                    SQLStatement = "Insert into MASTER_CLIENT_TABLE(" + Fields.Replace("POC,", "PointOfContact,") + "isEnabled) values ('" + Vals + "" + (isEnabled ? 1 : 0) + ")";
+                else
+                    SQLStatement = "Update MASTER_CLIENT_TABLE SET " + ForUpdate.Trim() + " where ID=" + CodeID;
 
                 //Finalizing Statement
 
-                InsertStatement = InsertStatement.Replace(",)", ")").Replace("('","(");
+                SQLStatement = SQLStatement.Replace(",)", ")").Replace("('","(");
 
 
-                clsDatabase.ExecuteNonQuery(InsertStatement);
+                clsDatabase.ExecuteNonQuery(SQLStatement);
 
 
                 result = true;
@@ -152,8 +176,9 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+        
 
-        //Get Client Total records
+        //Get Client records
         public static DataTable GetClientProfileRecords(out string ErrMsg, string Criteria)
         {
             DataTable dt = new DataTable();
@@ -170,5 +195,6 @@ namespace DisburstmentJournal.Helper
             }
             return dt;
         }
+        //End Here
     }
 }

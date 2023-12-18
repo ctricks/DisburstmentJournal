@@ -70,25 +70,29 @@ namespace DisburstmentJournal.MasterFile
                 };
 
                 ClientInfo.Add("tbCompanyLogo", pbCompanyLogo.Tag.ToString());
+                string ErrMsg = string.Empty;
 
-                if(clsDatabase.InsertClientProfile(ClientInfo,IntValue,cbIsEnabled.Checked))
-                {
-                    MessageBox.Show("Record successfully saved.", tbClientCode.Text + " saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ComponentStatus(true,true);
+                bool isInsert = clsDatabase.GetClientProfileRecords(out ErrMsg, "where ID=" + tbID.Text.Trim() + "").Rows.Count == 0 ? true : false;
+                
+                    if (clsDatabase.InsertUpdateClientProfile(ClientInfo, IntValue, cbIsEnabled.Checked,isInsert))
+                    {
+                        MessageBox.Show("Record successfully saved.", tbClientCode.Text + " saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ComponentStatus(true, true);
 
-                    string ErrorMessage = string.Empty;
-                    DataTable dtResult = clsDatabase.GetClientProfileRecords(out ErrorMessage, "");
+                        string ErrorMessage = string.Empty;
+                        DataTable dtResult = clsDatabase.GetClientProfileRecords(out ErrorMessage, "");
 
-                    dgRecords.DataSource = dtResult;
-                    dgRecords.Refresh();
+                        dgRecords.DataSource = dtResult;
+                        dgRecords.Refresh();
 
-                    ComponentStatus(false, true);
+                        ComponentStatus(false, true);
 
-                }
-                else
-                {
-                    ComponentStatus(false, true);
-                }
+                    }
+                    else
+                    {
+                        ComponentStatus(false, true);
+                    }
+                
                 cbIsEnabled.Enabled = false;
             }
         }
@@ -107,6 +111,9 @@ namespace DisburstmentJournal.MasterFile
                 ComponentStatus(false, false);
                 tbClientCode.Focus();
                 cbIsEnabled.Enabled = true;
+
+                ComponentStatus(true, false);
+
             }
         }
         private void ClearForm()
@@ -121,6 +128,7 @@ namespace DisburstmentJournal.MasterFile
 
         //Ends here
 
+        //Local Functions
         private void ComponentStatus(bool isEnabled=true,bool isClear = false)
         {
             foreach(Control ctrl in this.groupBox3.Controls)
@@ -138,6 +146,37 @@ namespace DisburstmentJournal.MasterFile
             }
 
         }
+
+        private void LoadSelectedRecord(int RowIndex, int ColumnIndex,DataGridView dgr)
+        {
+            try
+            {
+                foreach (Control ctrl in this.groupBox3.Controls)
+                {
+                    if (ctrl is TextBox)
+                    {
+                        if (ctrl.Name == "tbPOC")
+                        {
+                            ctrl.Text = dgr[ctrl.Name.Replace("tb", "").Replace("POC","PointOfContact"), RowIndex].Value.ToString();
+                        }
+                        else
+                        {
+                            ctrl.Text = dgr[ctrl.Name.Replace("tb", ""), RowIndex].Value.ToString();
+                        }
+                    }
+                }
+                cbIsEnabled.Checked = (dgr["isEnabled", RowIndex].Value.ToString() == "1") ? true : false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
+        //End Here
+
+        
 
         private void Initialized()
         {
@@ -172,6 +211,7 @@ namespace DisburstmentJournal.MasterFile
 
             ComponentStatus(false, true);
             cbIsEnabled.Checked = false;
+            cbIsEnabled.Enabled = false;
         }
 
         public frmClientProfile()
@@ -310,6 +350,8 @@ namespace DisburstmentJournal.MasterFile
         private void dgRecords_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
             MessageBox.Show("Show information");
+            ComponentStatus(false, false);
+            LoadSelectedRecord(e.RowIndex, e.ColumnIndex, dgRecords);
         }
     }
 }
