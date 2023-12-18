@@ -84,5 +84,12 @@ namespace DisburstmentJournal
             clientProfile.MdiParent = this;
             clientProfile.Show();
         }
+
+        private void accountReceivablesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmCompany companyProfile = new frmCompany();
+            companyProfile.MdiParent = this;
+            companyProfile.Show();
+        }
     }
 }

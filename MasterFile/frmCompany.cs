@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace DisburstmentJournal.MasterFile
 {
-    public partial class AccountReceivables : Form
+    public partial class frmCompany : Form
     {
-        public AccountReceivables()
+        public frmCompany()
         {
             InitializeComponent();
         }

@@ -30,19 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.tssCaption = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssSplitter = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssDatabaseStatus = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssSplitter2 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.tssDateTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.disbursementJournalToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dataEntryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.transactionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.masterFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.incomeStatementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.trialBalanceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,11 +41,21 @@
             this.collectionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.outputVatSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.masterFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartOfAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.accountReceivablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clientsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tssCaption = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssSplitter = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssDatabaseStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssSplitter2 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tssDateTime = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,6 +73,142 @@
             this.menuStrip1.Size = new System.Drawing.Size(1045, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
+            // 
+            // disbursementJournalToolStripMenuItem
+            // 
+            this.disbursementJournalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dataEntryToolStripMenuItem});
+            this.disbursementJournalToolStripMenuItem.Name = "disbursementJournalToolStripMenuItem";
+            this.disbursementJournalToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
+            this.disbursementJournalToolStripMenuItem.Text = "&Disbursement Journal";
+            // 
+            // dataEntryToolStripMenuItem
+            // 
+            this.dataEntryToolStripMenuItem.Name = "dataEntryToolStripMenuItem";
+            this.dataEntryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
+            this.dataEntryToolStripMenuItem.Size = new System.Drawing.Size(147, 22);
+            this.dataEntryToolStripMenuItem.Text = "Data &Entry";
+            // 
+            // transactionsToolStripMenuItem
+            // 
+            this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tAccountsToolStripMenuItem,
+            this.incomeStatementToolStripMenuItem,
+            this.trialBalanceToolStripMenuItem,
+            this.vatAnalysisToolStripMenuItem,
+            this.deductionsToolStripMenuItem,
+            this.collectionsToolStripMenuItem});
+            this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
+            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
+            this.transactionsToolStripMenuItem.Text = "&Transactions";
+            // 
+            // tAccountsToolStripMenuItem
+            // 
+            this.tAccountsToolStripMenuItem.Name = "tAccountsToolStripMenuItem";
+            this.tAccountsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.tAccountsToolStripMenuItem.Text = "T-&Account";
+            // 
+            // incomeStatementToolStripMenuItem
+            // 
+            this.incomeStatementToolStripMenuItem.Name = "incomeStatementToolStripMenuItem";
+            this.incomeStatementToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.incomeStatementToolStripMenuItem.Text = "&Income Statement";
+            // 
+            // trialBalanceToolStripMenuItem
+            // 
+            this.trialBalanceToolStripMenuItem.Name = "trialBalanceToolStripMenuItem";
+            this.trialBalanceToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.trialBalanceToolStripMenuItem.Text = "Trial &Balance";
+            // 
+            // vatAnalysisToolStripMenuItem
+            // 
+            this.vatAnalysisToolStripMenuItem.Name = "vatAnalysisToolStripMenuItem";
+            this.vatAnalysisToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.vatAnalysisToolStripMenuItem.Text = "&Vat Analysis";
+            // 
+            // deductionsToolStripMenuItem
+            // 
+            this.deductionsToolStripMenuItem.Name = "deductionsToolStripMenuItem";
+            this.deductionsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.deductionsToolStripMenuItem.Text = "&Deductions";
+            // 
+            // collectionsToolStripMenuItem
+            // 
+            this.collectionsToolStripMenuItem.Name = "collectionsToolStripMenuItem";
+            this.collectionsToolStripMenuItem.Size = new System.Drawing.Size(171, 22);
+            this.collectionsToolStripMenuItem.Text = "&Collections";
+            // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.outputVatSummaryToolStripMenuItem});
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
+            this.toolStripMenuItem1.Text = "&Reports";
+            // 
+            // outputVatSummaryToolStripMenuItem
+            // 
+            this.outputVatSummaryToolStripMenuItem.Name = "outputVatSummaryToolStripMenuItem";
+            this.outputVatSummaryToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
+            this.outputVatSummaryToolStripMenuItem.Text = "&Output Vat Summary";
+            // 
+            // masterFileToolStripMenuItem
+            // 
+            this.masterFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chartOfAccountsToolStripMenuItem,
+            this.accountReceivablesToolStripMenuItem,
+            this.usersToolStripMenuItem,
+            this.rolesToolStripMenuItem,
+            this.clientsToolStripMenuItem});
+            this.masterFileToolStripMenuItem.Name = "masterFileToolStripMenuItem";
+            this.masterFileToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
+            this.masterFileToolStripMenuItem.Text = "&MasterFile";
+            // 
+            // chartOfAccountsToolStripMenuItem
+            // 
+            this.chartOfAccountsToolStripMenuItem.Name = "chartOfAccountsToolStripMenuItem";
+            this.chartOfAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.chartOfAccountsToolStripMenuItem.Text = "&Chart of Accounts";
+            // 
+            // accountReceivablesToolStripMenuItem
+            // 
+            this.accountReceivablesToolStripMenuItem.Name = "accountReceivablesToolStripMenuItem";
+            this.accountReceivablesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.accountReceivablesToolStripMenuItem.Text = "C&ompany";
+            this.accountReceivablesToolStripMenuItem.Click += new System.EventHandler(this.accountReceivablesToolStripMenuItem_Click);
+            // 
+            // usersToolStripMenuItem
+            // 
+            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
+            this.usersToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.usersToolStripMenuItem.Text = "&Users";
+            // 
+            // rolesToolStripMenuItem
+            // 
+            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
+            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.rolesToolStripMenuItem.Text = "&Roles";
+            // 
+            // clientsToolStripMenuItem
+            // 
+            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
+            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.clientsToolStripMenuItem.Text = "C&lients Profile";
+            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutToolStripMenuItem});
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "&Help";
+            // 
+            // aboutToolStripMenuItem
+            // 
+            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Text = "&About";
             // 
             // statusStrip1
             // 
@@ -123,141 +259,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // disbursementJournalToolStripMenuItem
-            // 
-            this.disbursementJournalToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.dataEntryToolStripMenuItem});
-            this.disbursementJournalToolStripMenuItem.Name = "disbursementJournalToolStripMenuItem";
-            this.disbursementJournalToolStripMenuItem.Size = new System.Drawing.Size(133, 20);
-            this.disbursementJournalToolStripMenuItem.Text = "&Disbursement Journal";
-            // 
-            // dataEntryToolStripMenuItem
-            // 
-            this.dataEntryToolStripMenuItem.Name = "dataEntryToolStripMenuItem";
-            this.dataEntryToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F2;
-            this.dataEntryToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.dataEntryToolStripMenuItem.Text = "Data &Entry";
-            // 
-            // transactionsToolStripMenuItem
-            // 
-            this.transactionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tAccountsToolStripMenuItem,
-            this.incomeStatementToolStripMenuItem,
-            this.trialBalanceToolStripMenuItem,
-            this.vatAnalysisToolStripMenuItem,
-            this.deductionsToolStripMenuItem,
-            this.collectionsToolStripMenuItem});
-            this.transactionsToolStripMenuItem.Name = "transactionsToolStripMenuItem";
-            this.transactionsToolStripMenuItem.Size = new System.Drawing.Size(84, 20);
-            this.transactionsToolStripMenuItem.Text = "&Transactions";
-            // 
-            // masterFileToolStripMenuItem
-            // 
-            this.masterFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.chartOfAccountsToolStripMenuItem,
-            this.accountReceivablesToolStripMenuItem,
-            this.usersToolStripMenuItem,
-            this.rolesToolStripMenuItem,
-            this.clientsToolStripMenuItem});
-            this.masterFileToolStripMenuItem.Name = "masterFileToolStripMenuItem";
-            this.masterFileToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
-            this.masterFileToolStripMenuItem.Text = "&MasterFile";
-            // 
-            // helpToolStripMenuItem
-            // 
-            this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutToolStripMenuItem});
-            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-            this.helpToolStripMenuItem.Text = "&Help";
-            // 
-            // aboutToolStripMenuItem
-            // 
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.aboutToolStripMenuItem.Text = "&About";
-            // 
-            // tAccountsToolStripMenuItem
-            // 
-            this.tAccountsToolStripMenuItem.Name = "tAccountsToolStripMenuItem";
-            this.tAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.tAccountsToolStripMenuItem.Text = "T-&Account";
-            // 
-            // incomeStatementToolStripMenuItem
-            // 
-            this.incomeStatementToolStripMenuItem.Name = "incomeStatementToolStripMenuItem";
-            this.incomeStatementToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.incomeStatementToolStripMenuItem.Text = "&Income Statement";
-            // 
-            // trialBalanceToolStripMenuItem
-            // 
-            this.trialBalanceToolStripMenuItem.Name = "trialBalanceToolStripMenuItem";
-            this.trialBalanceToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.trialBalanceToolStripMenuItem.Text = "Trial &Balance";
-            // 
-            // vatAnalysisToolStripMenuItem
-            // 
-            this.vatAnalysisToolStripMenuItem.Name = "vatAnalysisToolStripMenuItem";
-            this.vatAnalysisToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.vatAnalysisToolStripMenuItem.Text = "&Vat Analysis";
-            // 
-            // deductionsToolStripMenuItem
-            // 
-            this.deductionsToolStripMenuItem.Name = "deductionsToolStripMenuItem";
-            this.deductionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.deductionsToolStripMenuItem.Text = "&Deductions";
-            // 
-            // collectionsToolStripMenuItem
-            // 
-            this.collectionsToolStripMenuItem.Name = "collectionsToolStripMenuItem";
-            this.collectionsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.collectionsToolStripMenuItem.Text = "&Collections";
-            // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.outputVatSummaryToolStripMenuItem});
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(59, 20);
-            this.toolStripMenuItem1.Text = "&Reports";
-            // 
-            // outputVatSummaryToolStripMenuItem
-            // 
-            this.outputVatSummaryToolStripMenuItem.Name = "outputVatSummaryToolStripMenuItem";
-            this.outputVatSummaryToolStripMenuItem.Size = new System.Drawing.Size(185, 22);
-            this.outputVatSummaryToolStripMenuItem.Text = "&Output Vat Summary";
-            // 
-            // chartOfAccountsToolStripMenuItem
-            // 
-            this.chartOfAccountsToolStripMenuItem.Name = "chartOfAccountsToolStripMenuItem";
-            this.chartOfAccountsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.chartOfAccountsToolStripMenuItem.Text = "&Chart of Accounts";
-            // 
-            // accountReceivablesToolStripMenuItem
-            // 
-            this.accountReceivablesToolStripMenuItem.Name = "accountReceivablesToolStripMenuItem";
-            this.accountReceivablesToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.accountReceivablesToolStripMenuItem.Text = "&Account Receivables";
-            // 
-            // usersToolStripMenuItem
-            // 
-            this.usersToolStripMenuItem.Name = "usersToolStripMenuItem";
-            this.usersToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.usersToolStripMenuItem.Text = "&Users";
-            // 
-            // rolesToolStripMenuItem
-            // 
-            this.rolesToolStripMenuItem.Name = "rolesToolStripMenuItem";
-            this.rolesToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.rolesToolStripMenuItem.Text = "&Roles";
-            // 
-            // clientsToolStripMenuItem
-            // 
-            this.clientsToolStripMenuItem.Name = "clientsToolStripMenuItem";
-            this.clientsToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
-            this.clientsToolStripMenuItem.Text = "C&lients Profile";
-            this.clientsToolStripMenuItem.Click += new System.EventHandler(this.clientsToolStripMenuItem_Click);
             // 
             // MainScreen
             // 
