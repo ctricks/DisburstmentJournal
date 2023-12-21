@@ -196,5 +196,93 @@ namespace DisburstmentJournal.Helper
             return dt;
         }
         //End Here
+
+        //Insert Company Record
+        public static bool InsertUpdateCompany(Dictionary<string, string> ClientInfo, List<string> IntValues, bool isEnabled, bool isInsert)
+        {
+            bool result = false;
+            try
+            {
+                string Fields = string.Empty;
+                string Vals = string.Empty;
+                string ForUpdate = string.Empty;
+                string CodeID = "0";
+
+                foreach (string Field in ClientInfo.Keys)
+                {
+                    if (Field.ToLower() != "tbid")
+                        Fields += Field.Replace("tb", "") + ",";
+                }
+
+                foreach (var Values in ClientInfo)
+                {
+                    if (Values.Key.ToLower() == "tbid")
+                    {
+                        CodeID = Values.Value.ToString();
+                        continue;
+                    }
+
+                    if (IntValues.Contains(Values.Key))
+                    {
+                        Vals += Values.Value + ",";
+                        ForUpdate += Values.Key.ToString().Replace("tb", "") + " = " + Values.Value.ToString() + ",";
+                    }
+                    else
+                    {
+                        Vals += "'" + Values.Value.Replace("'", "''") + "'";
+                        ForUpdate += Values.Key.ToString().Replace("tb", "").Replace("POC", "PointOfContact") + " = '" + Values.Value.ToString() + "',";
+                    }
+                    if (Vals.Substring(Vals.Length - 1, 1) != ",")
+                        Vals += ",";
+
+
+
+                }
+
+                ForUpdate += "isEnabled = " + (isEnabled ? "1" : "0");
+
+                string SQLStatement = string.Empty;
+
+                if (isInsert)
+                    SQLStatement = "Insert into MASTER_COMPANY_TABLE(" + Fields.Replace("POC,", "PointOfContact,") + "isEnabled) values ('" + Vals + "" + (isEnabled ? 1 : 0) + ")";
+                else
+                    SQLStatement = "Update MASTER_COMPANY_TABLE SET " + ForUpdate.Trim() + " where ID=" + CodeID;
+
+                //Finalizing Statement
+
+                SQLStatement = SQLStatement.Replace(",)", ")").Replace("('", "(");
+
+
+                clsDatabase.ExecuteNonQuery(SQLStatement);
+
+
+                result = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error Insert Client Profile. Please check", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                result = false;
+            }
+            return result;
+        }
+
+        //Get Company records
+        public static DataTable GetCompanyRecords(out string ErrMsg, string Criteria)
+        {
+            DataTable dt = new DataTable();
+            ErrMsg = string.Empty;
+            try
+            {
+                string SQLQuery = "select * from MASTER_COMPANY_TABLE " + Criteria + " order by CreatedDate desc";
+                dt = dtResult(SQLQuery);
+            }
+            catch (Exception ex)
+            {
+                ErrMsg = ex.Message.ToString();
+                throw;
+            }
+            return dt;
+        }
+        //End Here
     }
 }
