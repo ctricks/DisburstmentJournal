@@ -33,11 +33,12 @@ namespace DisburstmentJournal.MasterFile
 
                 DataTable dtAllRecords = clsDatabase.GetClientProfileRecords(out ErrMsg, "");
 
-                tbID.Text = (dtAllRecords.Rows.Count + 1).ToString();
+                tbID.Text = (int.Parse(dtAllRecords.Rows[dtAllRecords.Rows.Count-1]["ID"].ToString()) + 1).ToString();
 
                 tbClientCode.Focus();
 
                 cbIsEnabled.Enabled = true;
+                cbIsEnabled.Checked = true;
             }
         }
         private void SaveForm()
@@ -66,7 +67,7 @@ namespace DisburstmentJournal.MasterFile
 
                 List<string> IntValue = new List<string>()
                 {
-                    "tbPOCNumber","tbID"
+                    "tbID"
                 };
 
                 ClientInfo.Add("tbCompanyLogo", pbCompanyLogo.Tag.ToString());
@@ -94,6 +95,7 @@ namespace DisburstmentJournal.MasterFile
                     }
                 
                 cbIsEnabled.Enabled = false;
+                cbIsEnabled.Checked = false;
             }
         }
         private void EditForm()
@@ -348,10 +350,19 @@ namespace DisburstmentJournal.MasterFile
         }
 
         private void dgRecords_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            MessageBox.Show("Show information");
+        {   
             ComponentStatus(false, false);
             LoadSelectedRecord(e.RowIndex, e.ColumnIndex, dgRecords);
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clearToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

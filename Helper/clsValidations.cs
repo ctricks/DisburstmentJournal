@@ -23,5 +23,19 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+        public static bool isInteger(string ValueEnter)
+        {
+            bool result = false;
+            try
+            {
+                int Value = int.Parse(ValueEnter);
+                result = true;
+            }
+            catch (Exception)
+            {
+
+            }
+            return result;
+        }
     }
 }

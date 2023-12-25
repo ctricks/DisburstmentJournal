@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -36,11 +38,13 @@ namespace DisburstmentJournal.MasterFile
 
                 DataTable dtAllRecords = clsDatabase.GetCompanyRecords(out ErrMsg, "");
 
-                tbID.Text = (dtAllRecords.Rows.Count + 1).ToString();
+                if(dtAllRecords.Rows.Count > 0)
+                    tbID.Text = (int.Parse(dtAllRecords.Rows[dtAllRecords.Rows.Count-1]["ID"].ToString()) + 1).ToString();
 
                 tbCompanyCode.Focus();
 
                 cbIsEnabled.Enabled = true;
+                cbIsEnabled.Checked = true;
             }
         }
         private void SaveForm()
@@ -55,7 +59,7 @@ namespace DisburstmentJournal.MasterFile
             DialogResult dr = MessageBox.Show("Would you like to save this information?", "Save entry?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                Dictionary<string, string> ClientInfo = new Dictionary<string, string>();
+                Dictionary<string, string> CompanyInfo = new Dictionary<string, string>();
 
                 foreach (Control ctrl in this.groupBox3.Controls)
                 {
@@ -63,20 +67,20 @@ namespace DisburstmentJournal.MasterFile
                     if (ctrl is TextBox)
                     {
                         if (ctrl.Name != "tbCriteria")
-                            ClientInfo.Add(ctrl.Name, ctrl.Text);
+                            CompanyInfo.Add(ctrl.Name, ctrl.Text);
                     }
                 }
 
                 List<string> IntValue = new List<string>()
                 {
-                    "tbPOCNumber","tbID"
+                    "tbID","tbCreditLimit","tbTerms"
                 };
 
                 string ErrMsg = string.Empty;
 
                 bool isInsert = clsDatabase.GetCompanyRecords(out ErrMsg, "where ID=" + tbID.Text.Trim() + "").Rows.Count == 0 ? true : false;
 
-                if (clsDatabase.InsertUpdateClientProfile(ClientInfo, IntValue, cbIsEnabled.Checked, isInsert))
+                if (clsDatabase.InsertUpdateCompany(CompanyInfo, IntValue, cbIsEnabled.Checked, isInsert))
                 {
                     MessageBox.Show("Record successfully saved.", tbCompanyCode.Text + " saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ComponentStatus(true, true);
@@ -88,7 +92,7 @@ namespace DisburstmentJournal.MasterFile
                     dgRecords.Refresh();
 
                     ComponentStatus(false, true);
-
+                    cbIsEnabled.Checked = false;
                 }
                 else
                 {
@@ -96,6 +100,7 @@ namespace DisburstmentJournal.MasterFile
                 }
 
                 cbIsEnabled.Enabled = false;
+                cbIsEnabled.Checked = false;
             }
         }
         private void EditForm()
@@ -133,7 +138,7 @@ namespace DisburstmentJournal.MasterFile
         //Local Functions
         private void ComponentStatus(bool isEnabled = true, bool isClear = false)
         {
-            foreach (Control ctrl in this.groupBox1.Controls)
+            foreach (Control ctrl in this.groupBox3.Controls)
             {
                 if (ctrl is TextBox)
                 {
@@ -146,7 +151,58 @@ namespace DisburstmentJournal.MasterFile
                         ctrl.Text = String.Empty;
                 }
             }
+        }
+        private void NumberValidation(KeyPressEventArgs e, TextBox tbField)
+        {
+            if (e.KeyChar != '\b' && e.KeyChar.ToString().Trim() != "")
+            {
+                if (!clsValidations.isInteger(e.KeyChar.ToString()))
+                {
+                    MessageBox.Show("Error: Please input a number", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+            }
+            else
+            {
+                tbField.Text = "";
+            }
+        }
+        private void NumberLeaveValidation(TextBox tbField)
+        {
+            if (!clsValidations.isInteger(tbField.Text.Trim()))
+            {
+                MessageBox.Show("Error: Please input a number", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                tbField.Text = String.Empty;
+                tbField.Focus();
+                return;
+            }
+        }
 
+        private void LoadSelectedRecord(int RowIndex, int ColumnIndex, DataGridView dgr)
+        {
+            try
+            {
+                foreach (Control ctrl in this.groupBox3.Controls)
+                {
+                    if (ctrl is TextBox)
+                    {
+                        if (ctrl.Name == "tbPOC")
+                        {
+                            ctrl.Text = dgr[ctrl.Name.Replace("tb", "").Replace("POC", "PointOfContact"), RowIndex].Value.ToString();
+                        }
+                        else
+                        {
+                            ctrl.Text = dgr[ctrl.Name.Replace("tb", ""), RowIndex].Value.ToString();
+                        }
+                    }
+                }
+                cbIsEnabled.Checked = (dgr["isEnabled", RowIndex].Value.ToString() == "1") ? true : false;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         private void Initialized()
@@ -228,6 +284,7 @@ namespace DisburstmentJournal.MasterFile
 
         private void btnNew_Click(object sender, EventArgs e)
         {
+            tbID.Text = "0";
             NewForm();
         }
 
@@ -256,6 +313,58 @@ namespace DisburstmentJournal.MasterFile
         private void btnClear2_Click(object sender, EventArgs e)
         {
             ComponentStatus(false, true);
+        }
+
+        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewForm();
+        }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(tbID.Text) || tbID.Text.Trim() == "0")
+            {
+                MessageBox.Show("Warning: Cannot save empty information. Kindly create a new entry", "Saving Client information Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            SaveForm();
+        }
+
+        private void closeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            CloseForm();
+        }
+
+        private void tbTerms_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumberValidation(e, tbTerms);
+        }
+
+        private void tbTerms_Validating(object sender, CancelEventArgs e)
+        {
+            NumberLeaveValidation(tbTerms);
+        }
+
+        private void tbCreditLimit_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            NumberValidation(e, tbCreditLimit);
+        }
+
+        private void tbCreditLimit_Leave(object sender, EventArgs e)
+        {
+
+        }
+
+        private void tbCreditLimit_Validating(object sender, CancelEventArgs e)
+        {
+            NumberLeaveValidation(tbCreditLimit);
+        }
+
+        private void dgRecords_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            ComponentStatus(false, false);
+            LoadSelectedRecord(e.RowIndex, e.ColumnIndex, dgRecords);
         }
     }
 }

@@ -185,7 +185,7 @@ namespace DisburstmentJournal.Helper
             ErrMsg = string.Empty;
             try
             {
-                string SQLQuery = "select * from MASTER_CLIENT_TABLE " + Criteria + " order by CreatedDate desc";
+                string SQLQuery = "select * from MASTER_CLIENT_TABLE " + Criteria + " order by ID asc";
                 dt = dtResult(SQLQuery);
             }
             catch (Exception ex)
@@ -198,7 +198,7 @@ namespace DisburstmentJournal.Helper
         //End Here
 
         //Insert Company Record
-        public static bool InsertUpdateCompany(Dictionary<string, string> ClientInfo, List<string> IntValues, bool isEnabled, bool isInsert)
+        public static bool InsertUpdateCompany(Dictionary<string, string> CompanyInfo, List<string> IntValues, bool isEnabled, bool isInsert)
         {
             bool result = false;
             try
@@ -208,13 +208,13 @@ namespace DisburstmentJournal.Helper
                 string ForUpdate = string.Empty;
                 string CodeID = "0";
 
-                foreach (string Field in ClientInfo.Keys)
+                foreach (string Field in CompanyInfo.Keys)
                 {
                     if (Field.ToLower() != "tbid")
                         Fields += Field.Replace("tb", "") + ",";
                 }
 
-                foreach (var Values in ClientInfo)
+                foreach (var Values in CompanyInfo)
                 {
                     if (Values.Key.ToLower() == "tbid")
                     {
@@ -230,7 +230,14 @@ namespace DisburstmentJournal.Helper
                     else
                     {
                         Vals += "'" + Values.Value.Replace("'", "''") + "'";
-                        ForUpdate += Values.Key.ToString().Replace("tb", "").Replace("POC", "PointOfContact") + " = '" + Values.Value.ToString() + "',";
+                        if (Values.Key == "tbPOC")
+                        {
+                            ForUpdate += Values.Key.ToString().Replace("tb", "").Replace("POC", "PointOfContact") + " = '" + Values.Value.ToString() + "',";
+                        }
+                        else
+                        {
+                            ForUpdate += Values.Key.ToString().Replace("tb", "") + " = '" + Values.Value.ToString() + "',";
+                        }
                     }
                     if (Vals.Substring(Vals.Length - 1, 1) != ",")
                         Vals += ",";
@@ -272,8 +279,8 @@ namespace DisburstmentJournal.Helper
             DataTable dt = new DataTable();
             ErrMsg = string.Empty;
             try
-            {
-                string SQLQuery = "select * from MASTER_COMPANY_TABLE " + Criteria + " order by CreatedDate desc";
+            {   
+                string SQLQuery = "select * from MASTER_COMPANY_TABLE " + Criteria + " order by ID asc";
                 dt = dtResult(SQLQuery);
             }
             catch (Exception ex)

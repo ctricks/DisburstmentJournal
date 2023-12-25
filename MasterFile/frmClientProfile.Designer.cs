@@ -40,8 +40,13 @@
             this.dgRecords = new System.Windows.Forms.DataGridView();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.pbCompanyLogo = new System.Windows.Forms.PictureBox();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnBrowseLogo = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnNew = new System.Windows.Forms.Button();
+            this.btnClear2 = new System.Windows.Forms.Button();
+            this.btnSave = new System.Windows.Forms.Button();
             this.cbIsEnabled = new System.Windows.Forms.CheckBox();
             this.tbPOCNumber = new System.Windows.Forms.TextBox();
             this.tbPOC = new System.Windows.Forms.TextBox();
@@ -72,19 +77,14 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.clearToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.closeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pbCompanyLogo = new System.Windows.Forms.PictureBox();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnNew = new System.Windows.Forms.Button();
-            this.btnClear2 = new System.Windows.Forms.Button();
-            this.btnSave = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgRecords)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbCompanyLogo)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCompanyLogo)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -250,6 +250,16 @@
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Company Logo";
             // 
+            // pbCompanyLogo
+            // 
+            this.pbCompanyLogo.Image = global::DisburstmentJournal.Properties.Resources.CompanyLogo;
+            this.pbCompanyLogo.Location = new System.Drawing.Point(15, 16);
+            this.pbCompanyLogo.Name = "pbCompanyLogo";
+            this.pbCompanyLogo.Size = new System.Drawing.Size(151, 124);
+            this.pbCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbCompanyLogo.TabIndex = 17;
+            this.pbCompanyLogo.TabStop = false;
+            // 
             // btnRemove
             // 
             this.btnRemove.Location = new System.Drawing.Point(91, 146);
@@ -269,6 +279,67 @@
             this.btnBrowseLogo.Text = "&Browse";
             this.btnBrowseLogo.UseVisualStyleBackColor = true;
             this.btnBrowseLogo.Click += new System.EventHandler(this.btnBrowseLogo_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEdit.Image = global::DisburstmentJournal.Properties.Resources.Edit;
+            this.btnEdit.Location = new System.Drawing.Point(596, 253);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(77, 101);
+            this.btnEdit.TabIndex = 24;
+            this.btnEdit.Text = "&Edit";
+            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnNew
+            // 
+            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnNew.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnNew.Image = global::DisburstmentJournal.Properties.Resources.New;
+            this.btnNew.Location = new System.Drawing.Point(515, 253);
+            this.btnNew.Name = "btnNew";
+            this.btnNew.Size = new System.Drawing.Size(77, 101);
+            this.btnNew.TabIndex = 23;
+            this.btnNew.Text = "&New";
+            this.btnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnNew.UseVisualStyleBackColor = true;
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnClear2
+            // 
+            this.btnClear2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClear2.Image = global::DisburstmentJournal.Properties.Resources.Clear;
+            this.btnClear2.Location = new System.Drawing.Point(765, 253);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(86, 101);
+            this.btnClear2.TabIndex = 26;
+            this.btnClear2.Text = "&Clear";
+            this.btnClear2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnClear2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnClear2.UseVisualStyleBackColor = true;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.AutoSize = true;
+            this.btnSave.Image = global::DisburstmentJournal.Properties.Resources.Save;
+            this.btnSave.Location = new System.Drawing.Point(678, 253);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(86, 103);
+            this.btnSave.TabIndex = 25;
+            this.btnSave.Text = "&Save";
+            this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // cbIsEnabled
             // 
@@ -468,7 +539,7 @@
             this.shorcutsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(841, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(880, 24);
             this.menuStrip1.TabIndex = 7;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.Visible = false;
@@ -490,7 +561,7 @@
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F9;
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.newToolStripMenuItem.Text = "&New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
@@ -498,14 +569,15 @@
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
             this.editToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F7;
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.editToolStripMenuItem.Text = "&Edit";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F3;
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "&Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
@@ -513,87 +585,17 @@
             // 
             this.clearToolStripMenuItem.Name = "clearToolStripMenuItem";
             this.clearToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F8;
-            this.clearToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.clearToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.clearToolStripMenuItem.Text = "C&lear";
+            this.clearToolStripMenuItem.Click += new System.EventHandler(this.clearToolStripMenuItem_Click);
             // 
             // closeToolStripMenuItem
             // 
             this.closeToolStripMenuItem.Name = "closeToolStripMenuItem";
             this.closeToolStripMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F12;
-            this.closeToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.closeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.closeToolStripMenuItem.Text = "&Close";
             this.closeToolStripMenuItem.Click += new System.EventHandler(this.closeToolStripMenuItem_Click);
-            // 
-            // pbCompanyLogo
-            // 
-            this.pbCompanyLogo.Image = global::DisburstmentJournal.Properties.Resources.CompanyLogo;
-            this.pbCompanyLogo.Location = new System.Drawing.Point(15, 16);
-            this.pbCompanyLogo.Name = "pbCompanyLogo";
-            this.pbCompanyLogo.Size = new System.Drawing.Size(151, 124);
-            this.pbCompanyLogo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbCompanyLogo.TabIndex = 17;
-            this.pbCompanyLogo.TabStop = false;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit.Image = global::DisburstmentJournal.Properties.Resources.Edit;
-            this.btnEdit.Location = new System.Drawing.Point(596, 253);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(77, 101);
-            this.btnEdit.TabIndex = 24;
-            this.btnEdit.Text = "&Edit";
-            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnEdit.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnNew
-            // 
-            this.btnNew.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNew.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnNew.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnNew.Image = global::DisburstmentJournal.Properties.Resources.New;
-            this.btnNew.Location = new System.Drawing.Point(515, 253);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(77, 101);
-            this.btnNew.TabIndex = 23;
-            this.btnNew.Text = "&New";
-            this.btnNew.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnNew.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnNew.UseVisualStyleBackColor = true;
-            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
-            // 
-            // btnClear2
-            // 
-            this.btnClear2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClear2.Image = global::DisburstmentJournal.Properties.Resources.Clear;
-            this.btnClear2.Location = new System.Drawing.Point(765, 253);
-            this.btnClear2.Name = "btnClear2";
-            this.btnClear2.Size = new System.Drawing.Size(86, 101);
-            this.btnClear2.TabIndex = 26;
-            this.btnClear2.Text = "&Clear";
-            this.btnClear2.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnClear2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnClear2.UseVisualStyleBackColor = true;
-            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.AutoSize = true;
-            this.btnSave.Image = global::DisburstmentJournal.Properties.Resources.Save;
-            this.btnSave.Location = new System.Drawing.Point(678, 253);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(86, 103);
-            this.btnSave.TabIndex = 25;
-            this.btnSave.Text = "&Save";
-            this.btnSave.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmClientProfile
             // 
@@ -616,11 +618,11 @@
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbCompanyLogo)).EndInit();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbCompanyLogo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

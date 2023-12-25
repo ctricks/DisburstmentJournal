@@ -87,6 +87,12 @@
     <Compile Include="MasterFile\frmClientProfile.Designer.cs">
       <DependentUpon>frmClientProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterFile\frmUsers.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterFile\frmUsers.Designer.cs">
+      <DependentUpon>frmUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmLogin.resx">
@@ -103,6 +109,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterFile\frmCompany.resx">
       <DependentUpon>frmCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\frmUsers.resx">
+      <DependentUpon>frmUsers.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
