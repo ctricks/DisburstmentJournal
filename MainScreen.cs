@@ -91,5 +91,26 @@ namespace DisburstmentJournal
             companyProfile.MdiParent = this;
             companyProfile.Show();
         }
+
+        private void usersToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUsers userProfile = new frmUsers();
+            userProfile.MdiParent = this;
+            userProfile.Show();
+        }
+
+        private void rolesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmUserRoles userRole = new frmUserRoles();
+            userRole.MdiParent = this;
+            userRole.Show();
+        }
+
+        private void accountToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmAccountCreator accountCreator = new frmAccountCreator();
+            accountCreator.MdiParent = this;
+            accountCreator.Show();
+        }
     }
 }

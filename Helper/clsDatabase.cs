@@ -13,7 +13,7 @@ namespace DisburstmentJournal.Helper
 {
     public class clsDatabase
     {   
-        //Helper and Database Functions
+     //Helper and Database Functions
         private static DataTable dtResult(string SQLQuery)
         {
             DataTable dtResult = new DataTable();
@@ -54,7 +54,7 @@ namespace DisburstmentJournal.Helper
             }
             catch (Exception ex)
             {
-                throw;
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Exceptional Error from Database transaction", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             return result;
         }
@@ -81,9 +81,9 @@ namespace DisburstmentJournal.Helper
 
             return result;
         }
-        //End here
+     //Ends here
 
-        //User Functions
+     /*User Functions*/
         public static bool CheckUserLogin(string Username,string Password,out string Message)
         {
             bool result = false;
@@ -104,9 +104,52 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+
+        //Get User Role Records
+        public static DataTable dtGetUserRole(string Criteria = "")
+        {
+            DataTable Result = new DataTable();
+            try
+            {
+                string SQL_Query = "Select * from MASTER_ROLE_TABLE " + Criteria + " order by ID desc";
+
+                Result = dtResult(SQL_Query);
+            }
+            catch (Exception)
+            {
+
+            }
+            return Result;
+        }
+        
+        //End Here
+        //Insert Update UserRole Here
+        public static bool isInsertUpdateUserRole(bool isInsert,string RoleName,int ID = 0)
+        {
+            string SQL_Statement = string.Empty;
+            bool result = false;
+
+            if(isInsert)
+            {
+                SQL_Statement = "Insert into [MASTER_ROLE_TABLE] (Rolename) values ('" + RoleName + "')";
+            }
+            else
+            {
+                SQL_Statement = "Update [MASTER_ROLE_TABLE] set Rolename = '" + RoleName + "' where ID = " + ID; 
+            }
+
+            if(ExecuteNonQuery(SQL_Statement) > 0)
+            {
+                result = true;
+            }
+
+            return result;
+        }
         //End Here
 
-        //ClientProfile Functions
+     //User Function Ends Here
+
+     //ClientProfile Functions
 
         //Insert Client Profile
         public static bool InsertUpdateClientProfile(Dictionary<string,string>ClientInfo,List<string>IntValues,bool isEnabled,bool isInsert)
@@ -176,9 +219,10 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+     //End Here
         
 
-        //Get Client records
+     //Get Client records
         public static DataTable GetClientProfileRecords(out string ErrMsg, string Criteria)
         {
             DataTable dt = new DataTable();
@@ -195,9 +239,9 @@ namespace DisburstmentJournal.Helper
             }
             return dt;
         }
-        //End Here
+     //End Here
 
-        //Insert Company Record
+     //Insert Company Record
         public static bool InsertUpdateCompany(Dictionary<string, string> CompanyInfo, List<string> IntValues, bool isEnabled, bool isInsert)
         {
             bool result = false;
@@ -272,8 +316,9 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+     //End Here
 
-        //Get Company records
+     //Get Company records
         public static DataTable GetCompanyRecords(out string ErrMsg, string Criteria)
         {
             DataTable dt = new DataTable();
@@ -290,6 +335,8 @@ namespace DisburstmentJournal.Helper
             }
             return dt;
         }
-        //End Here
+    //End Here
+
+    //End Here
     }
 }

@@ -75,6 +75,12 @@
     <Compile Include="MainScreen.Designer.cs">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterFile\frmAccountCreator.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterFile\frmAccountCreator.Designer.cs">
+      <DependentUpon>frmAccountCreator.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterFile\frmCompany.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -86,6 +92,12 @@
     </Compile>
     <Compile Include="MasterFile\frmClientProfile.Designer.cs">
       <DependentUpon>frmClientProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MasterFile\frmUserRoles.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterFile\frmUserRoles.Designer.cs">
+      <DependentUpon>frmUserRoles.cs</DependentUpon>
     </Compile>
     <Compile Include="MasterFile\frmUsers.cs">
       <SubType>Form</SubType>
@@ -104,11 +116,17 @@
     <EmbeddedResource Include="MainScreen.resx">
       <DependentUpon>MainScreen.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\frmAccountCreator.resx">
+      <DependentUpon>frmAccountCreator.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MasterFile\frmClientProfile.resx">
       <DependentUpon>frmClientProfile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterFile\frmCompany.resx">
       <DependentUpon>frmCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\frmUserRoles.resx">
+      <DependentUpon>frmUserRoles.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterFile\frmUsers.resx">
       <DependentUpon>frmUsers.cs</DependentUpon>
