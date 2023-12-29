@@ -157,6 +157,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DatabaseCopy\12192023.sql" />
+    <Content Include="DatabaseCopy\MASTER_ACCOUNT_TABLE.sql" />
+    <Content Include="DatabaseCopy\MASTER_CHARTOFACCOUNTS_TABLE.sql" />
     <Content Include="Resources\background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
