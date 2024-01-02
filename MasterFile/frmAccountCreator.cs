@@ -21,18 +21,65 @@ namespace DisburstmentJournal.MasterFile
 
         //Private Functions
 
-        private void NewRecord(GroupBox gpAccount,bool isEnabled = false)
-        {
+        private void NewEditRecord(GroupBox gpAccount,bool isEnabled = false,bool isEdit = false)
+        {   
+
             foreach (Control ctrl in gpAccount.Controls)
             {
+                if (ctrl is CheckBox)
+                {
+                    if (ctrl.Name.Contains("isEnabled"))
+                    {
+                        CheckBox cbEnabled = (CheckBox)ctrl;
+                        cbEnabled.Checked = !isEnabled;
+                    }
+                }
+
                 if(ctrl is TextBox)
                 {
-                    ctrl.Text = String.Empty;
-                    if (ctrl.Name.Contains("ID"))
-                        ctrl.Enabled = isEnabled;
+                    TextBox tbAccountName = (TextBox)ctrl;
+                    if (!isEdit)
+                    {
+                        ctrl.Text = String.Empty;
+                        
+                        tbAccountName.ReadOnly = !isEnabled;
+
+                        if (ctrl.Name.Contains("ID"))
+                        {   tbAccountName.ReadOnly = true;
+                            ctrl.Enabled = isEnabled;
+                            DataTable dtRecord = clsDatabase.GetAccountRecords(gpAccount.Name.Replace("gb",""));
+                            if (dtRecord.Rows.Count > 0)
+                            {
+                                tbAccountName.Text = (int.Parse(dtRecord.Rows[0]["ID"].ToString()) + 1).ToString();
+                            }else
+                            {
+                                if(isEnabled)
+                                    tbAccountName.Text = "1";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (ctrl.Name.Contains("ID") && ctrl.Text == String.Empty)
+                        {
+                            MessageBox.Show("Error: Cannot Edit no ID Selected. Please select first on the record before editting", "Edit Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+
+
+                        if (!ctrl.Name.Contains("ID"))
+                        {
+                            ctrl.Enabled = isEdit;
+                            tbAccountName.ReadOnly = isEnabled;
+                            tbAccountName.ReadOnly = isEdit;
+                            
+                        }
+                    }
+
                 }
             }
         }
+
 
         private void NumberValidation(KeyPressEventArgs e, TextBox tbField)
         {
@@ -70,24 +117,45 @@ namespace DisburstmentJournal.MasterFile
 
         private void btnAccountCategoryNew(object sender, EventArgs e)
         {
-            NewRecord(gbAccountCategory, true);
+            NewEditRecord(gbAccountCategory, true,false);
+            NewEditRecord(gbAccountStatement);
+            NewEditRecord(gbAccountType);
         }
 
         private void frmAccountCreator_Load(object sender, EventArgs e)
         {
-            NewRecord(gbAccountCategory);
-            NewRecord(gbAccountType);
-            NewRecord(gbAccountStatement);
+            NewEditRecord(gbAccountCategory,false);
+            NewEditRecord(gbAccountType, false);
+            NewEditRecord(gbAccountStatement, false);
         }
 
         private void btnAccountTypeNew_Click(object sender, EventArgs e)
         {
-            NewRecord(gbAccountType, true);
+            NewEditRecord(gbAccountType, true,false);
+            NewEditRecord(gbAccountStatement);
+            NewEditRecord(gbAccountCategory);
         }
 
         private void btnAccountStatementNew_Click(object sender, EventArgs e)
         {
-            NewRecord(gbAccountStatement, true);
+            NewEditRecord(gbAccountStatement, true,false);
+            NewEditRecord(gbAccountCategory);
+            NewEditRecord(gbAccountType);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            NewEditRecord(gbAccountCategory, true, true);
+        }
+
+        private void btnASEdit_Click(object sender, EventArgs e)
+        {
+            NewEditRecord(gbAccountStatement, true, true);
+        }
+
+        private void btnATEdit_Click(object sender, EventArgs e)
+        {
+            NewEditRecord(gbAccountType, true, true);
         }
     }
 }

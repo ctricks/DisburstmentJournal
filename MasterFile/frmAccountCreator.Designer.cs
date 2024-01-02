@@ -31,7 +31,7 @@
             this.gbAccountCategory = new System.Windows.Forms.GroupBox();
             this.button4 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnACEdit = new System.Windows.Forms.Button();
             this.btnACNew = new System.Windows.Forms.Button();
             this.tbACRemarks = new System.Windows.Forms.TextBox();
             this.tbACDescription = new System.Windows.Forms.TextBox();
@@ -49,7 +49,7 @@
             this.gbAccountType = new System.Windows.Forms.GroupBox();
             this.button5 = new System.Windows.Forms.Button();
             this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
+            this.btnATEdit = new System.Windows.Forms.Button();
             this.btnAccountTypeNew = new System.Windows.Forms.Button();
             this.tbATRemarks = new System.Windows.Forms.TextBox();
             this.tbATDescription = new System.Windows.Forms.TextBox();
@@ -65,7 +65,7 @@
             this.gbAccountStatement = new System.Windows.Forms.GroupBox();
             this.button9 = new System.Windows.Forms.Button();
             this.button10 = new System.Windows.Forms.Button();
-            this.button11 = new System.Windows.Forms.Button();
+            this.btnASEdit = new System.Windows.Forms.Button();
             this.btnAccountStatementNew = new System.Windows.Forms.Button();
             this.tbASRemarks = new System.Windows.Forms.TextBox();
             this.tbASDescription = new System.Windows.Forms.TextBox();
@@ -89,7 +89,7 @@
             // 
             this.gbAccountCategory.Controls.Add(this.button4);
             this.gbAccountCategory.Controls.Add(this.button3);
-            this.gbAccountCategory.Controls.Add(this.button2);
+            this.gbAccountCategory.Controls.Add(this.btnACEdit);
             this.gbAccountCategory.Controls.Add(this.btnACNew);
             this.gbAccountCategory.Controls.Add(this.tbACRemarks);
             this.gbAccountCategory.Controls.Add(this.tbACDescription);
@@ -127,14 +127,15 @@
             this.button3.Text = "Save";
             this.button3.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnACEdit
             // 
-            this.button2.Location = new System.Drawing.Point(130, 209);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(51, 23);
-            this.button2.TabIndex = 12;
-            this.button2.Text = "Edit";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnACEdit.Location = new System.Drawing.Point(130, 209);
+            this.btnACEdit.Name = "btnACEdit";
+            this.btnACEdit.Size = new System.Drawing.Size(51, 23);
+            this.btnACEdit.TabIndex = 12;
+            this.btnACEdit.Text = "Edit";
+            this.btnACEdit.UseVisualStyleBackColor = true;
+            this.btnACEdit.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnACNew
             // 
@@ -267,7 +268,7 @@
             // 
             this.gbAccountType.Controls.Add(this.button5);
             this.gbAccountType.Controls.Add(this.button6);
-            this.gbAccountType.Controls.Add(this.button7);
+            this.gbAccountType.Controls.Add(this.btnATEdit);
             this.gbAccountType.Controls.Add(this.btnAccountTypeNew);
             this.gbAccountType.Controls.Add(this.tbATRemarks);
             this.gbAccountType.Controls.Add(this.tbATDescription);
@@ -305,14 +306,15 @@
             this.button6.Text = "Save";
             this.button6.UseVisualStyleBackColor = true;
             // 
-            // button7
+            // btnATEdit
             // 
-            this.button7.Location = new System.Drawing.Point(130, 209);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(51, 23);
-            this.button7.TabIndex = 16;
-            this.button7.Text = "Edit";
-            this.button7.UseVisualStyleBackColor = true;
+            this.btnATEdit.Location = new System.Drawing.Point(130, 209);
+            this.btnATEdit.Name = "btnATEdit";
+            this.btnATEdit.Size = new System.Drawing.Size(51, 23);
+            this.btnATEdit.TabIndex = 16;
+            this.btnATEdit.Text = "Edit";
+            this.btnATEdit.UseVisualStyleBackColor = true;
+            this.btnATEdit.Click += new System.EventHandler(this.btnATEdit_Click);
             // 
             // btnAccountTypeNew
             // 
@@ -423,7 +425,7 @@
             // 
             this.gbAccountStatement.Controls.Add(this.button9);
             this.gbAccountStatement.Controls.Add(this.button10);
-            this.gbAccountStatement.Controls.Add(this.button11);
+            this.gbAccountStatement.Controls.Add(this.btnASEdit);
             this.gbAccountStatement.Controls.Add(this.btnAccountStatementNew);
             this.gbAccountStatement.Controls.Add(this.tbASRemarks);
             this.gbAccountStatement.Controls.Add(this.tbASDescription);
@@ -461,14 +463,15 @@
             this.button10.Text = "Save";
             this.button10.UseVisualStyleBackColor = true;
             // 
-            // button11
+            // btnASEdit
             // 
-            this.button11.Location = new System.Drawing.Point(130, 209);
-            this.button11.Name = "button11";
-            this.button11.Size = new System.Drawing.Size(51, 23);
-            this.button11.TabIndex = 16;
-            this.button11.Text = "Edit";
-            this.button11.UseVisualStyleBackColor = true;
+            this.btnASEdit.Location = new System.Drawing.Point(130, 209);
+            this.btnASEdit.Name = "btnASEdit";
+            this.btnASEdit.Size = new System.Drawing.Size(51, 23);
+            this.btnASEdit.TabIndex = 16;
+            this.btnASEdit.Text = "Edit";
+            this.btnASEdit.UseVisualStyleBackColor = true;
+            this.btnASEdit.Click += new System.EventHandler(this.btnASEdit_Click);
             // 
             // btnAccountStatementNew
             // 
@@ -607,7 +610,7 @@
         private System.Windows.Forms.GroupBox gbAccountCategory;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnACEdit;
         private System.Windows.Forms.Button btnACNew;
         private System.Windows.Forms.TextBox tbACRemarks;
         private System.Windows.Forms.TextBox tbACDescription;
@@ -625,7 +628,7 @@
         private System.Windows.Forms.GroupBox gbAccountType;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button btnATEdit;
         private System.Windows.Forms.Button btnAccountTypeNew;
         private System.Windows.Forms.TextBox tbATRemarks;
         private System.Windows.Forms.TextBox tbATDescription;
@@ -641,7 +644,7 @@
         private System.Windows.Forms.GroupBox gbAccountStatement;
         private System.Windows.Forms.Button button9;
         private System.Windows.Forms.Button button10;
-        private System.Windows.Forms.Button button11;
+        private System.Windows.Forms.Button btnASEdit;
         private System.Windows.Forms.Button btnAccountStatementNew;
         private System.Windows.Forms.TextBox tbASRemarks;
         private System.Windows.Forms.TextBox tbASDescription;

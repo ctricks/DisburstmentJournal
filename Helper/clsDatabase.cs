@@ -337,6 +337,33 @@ namespace DisburstmentJournal.Helper
         }
     //End Here
 
+    //Get Accounts records
+        public static DataTable GetAccountRecords(string RecordType)
+        {
+            string SQL_Command = string.Empty;
+            SQL_Command = "Select * from [MASTER_ACCOUNT_TABLE]";
+
+            switch(RecordType)
+            {
+                case "AccountCategory":
+                    SQL_Command += " where isCategory = 1";
+                    break;
+            }
+
+            DataTable dtRecords = new DataTable();
+            try
+            {
+                dtRecords = dtResult(SQL_Command);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error in Getting Account Record:" + RecordType, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return dtRecords;
+        }
+    //End Here
+
     //End Here
     }
 }
