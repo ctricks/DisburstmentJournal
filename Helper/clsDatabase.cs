@@ -8,6 +8,8 @@ using System.Data.Common;
 using System.Data;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
+using System.Globalization;
+using System.Net.Http.Headers;
 
 namespace DisburstmentJournal.Helper
 {
@@ -58,6 +60,24 @@ namespace DisburstmentJournal.Helper
             }
             return result;
         }
+
+        public static bool isRecordFound(string Fields,string TableName, string Criteria = "")
+        {
+            bool result = false;
+            string SQLQuery = "Select " + Fields + " from " + TableName + " " + Criteria;
+            try
+            {
+                DataTable dtResults = dtResult(SQLQuery);
+                if(dtResults.Rows.Count > 0)
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Error Reading Record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
+
         public static bool CheckDBConnection(string ConnectionString,out string Message)
         {
             bool result = false;
@@ -362,7 +382,62 @@ namespace DisburstmentJournal.Helper
 
             return dtRecords;
         }
+        //End Here
+        //Save Account Records
+        public static int SaveAccountRecords(Dictionary<string, string> AccountInformation,string RemoveAcro, bool isInsert, bool isCategory = false, 
+            bool isType = false, bool isMainAccount = false,bool isSubAcount = false,bool isStatement = false)
+        {
+            int result = 0;
+            try
+            {
+                string Fields = string.Empty;
+                string Vals = string.Empty;
+                string ForUpdate = string.Empty;
+                string CodeID = "0";
+
+                foreach (string Field in AccountInformation.Keys)
+                {
+                    if (Field.ToLower().Contains("_id"))                        
+                        continue;                    
+
+                        Fields += Field.Replace(RemoveAcro, "") + ",";
+                }
+
+                foreach (var Values in AccountInformation)
+                {
+                    if (Values.Key.ToLower().Contains("_id"))
+                    {
+                        CodeID = Values.Value.ToString();
+                    }
+                    else
+                    {
+                        Vals += "'" + Values.Value + "',";
+                    }
+                }
+
+                string SQLStatement = string.Empty;
+
+                if (isInsert)
+                    SQLStatement = "Insert into [MASTER_ACCOUNT_TABLE](" + Fields + ") values ('" + Vals + "')";
+                else
+                    SQLStatement = "Update [MASTER_ACCOUNT_TABLE] SET " + ForUpdate.Trim() + " where ID=" + CodeID;
+
+                //Finalizing Statement
+
+                SQLStatement = SQLStatement.Replace(",)", ")").Replace("('", "(").Replace(",')",")");
+
+
+                result = clsDatabase.ExecuteNonQuery(SQLStatement);
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message.ToString(), "Failed in saving Account Record", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            return result;
+        }
     //End Here
+
 
     //End Here
     }

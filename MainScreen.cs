@@ -112,5 +112,12 @@ namespace DisburstmentJournal
             accountCreator.MdiParent = this;
             accountCreator.Show();
         }
+
+        private void referenceDataToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmReferenceData referenceData = new frmReferenceData();
+            referenceData.MdiParent = this;
+            referenceData.Show();
+        }
     }
 }

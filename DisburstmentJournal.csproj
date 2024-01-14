@@ -93,6 +93,12 @@
     <Compile Include="MasterFile\frmClientProfile.Designer.cs">
       <DependentUpon>frmClientProfile.cs</DependentUpon>
     </Compile>
+    <Compile Include="MasterFile\frmReferenceData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterFile\frmReferenceData.Designer.cs">
+      <DependentUpon>frmReferenceData.cs</DependentUpon>
+    </Compile>
     <Compile Include="MasterFile\frmUserRoles.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,6 +130,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MasterFile\frmCompany.resx">
       <DependentUpon>frmCompany.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterFile\frmReferenceData.resx">
+      <DependentUpon>frmReferenceData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MasterFile\frmUserRoles.resx">
       <DependentUpon>frmUserRoles.cs</DependentUpon>
@@ -157,8 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="DatabaseCopy\12192023.sql" />
-    <Content Include="DatabaseCopy\MASTER_ACCOUNT_TABLE.sql" />
     <Content Include="DatabaseCopy\MASTER_CHARTOFACCOUNTS_TABLE.sql" />
+    <Content Include="DatabaseCopy\MASTER_REFERENCE_DATA.sql" />
     <Content Include="Resources\background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

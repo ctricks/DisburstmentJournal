@@ -45,10 +45,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgAccounts = new System.Windows.Forms.DataGridView();
             this.gbAccountType = new System.Windows.Forms.GroupBox();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
+            this.btnATRefresh = new System.Windows.Forms.Button();
+            this.btnATSave = new System.Windows.Forms.Button();
             this.btnATEdit = new System.Windows.Forms.Button();
             this.btnAccountTypeNew = new System.Windows.Forms.Button();
             this.tbATRemarks = new System.Windows.Forms.TextBox();
@@ -63,8 +63,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.gbAccountStatement = new System.Windows.Forms.GroupBox();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button10 = new System.Windows.Forms.Button();
+            this.btnASRefresh = new System.Windows.Forms.Button();
+            this.btnASSave = new System.Windows.Forms.Button();
             this.btnASEdit = new System.Windows.Forms.Button();
             this.btnAccountStatementNew = new System.Windows.Forms.Button();
             this.tbASRemarks = new System.Windows.Forms.TextBox();
@@ -80,7 +80,7 @@
             this.label15 = new System.Windows.Forms.Label();
             this.gbAccountCategory.SuspendLayout();
             this.groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAccounts)).BeginInit();
             this.gbAccountType.SuspendLayout();
             this.gbAccountStatement.SuspendLayout();
             this.SuspendLayout();
@@ -117,6 +117,7 @@
             this.button4.TabIndex = 14;
             this.button4.Text = "Refresh";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.btnACRefresh_Click);
             // 
             // button3
             // 
@@ -126,6 +127,7 @@
             this.button3.TabIndex = 13;
             this.button3.Text = "Save";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.btnACSave_Click);
             // 
             // btnACEdit
             // 
@@ -244,7 +246,7 @@
             // 
             // groupBox3
             // 
-            this.groupBox3.Controls.Add(this.dataGridView1);
+            this.groupBox3.Controls.Add(this.dgAccounts);
             this.groupBox3.Location = new System.Drawing.Point(10, 274);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(1049, 286);
@@ -252,22 +254,22 @@
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Account";
             // 
-            // dataGridView1
+            // dgAccounts
             // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 16);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(1043, 267);
-            this.dataGridView1.TabIndex = 0;
+            this.dgAccounts.AllowUserToAddRows = false;
+            this.dgAccounts.AllowUserToDeleteRows = false;
+            this.dgAccounts.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgAccounts.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgAccounts.Location = new System.Drawing.Point(3, 16);
+            this.dgAccounts.Name = "dgAccounts";
+            this.dgAccounts.ReadOnly = true;
+            this.dgAccounts.Size = new System.Drawing.Size(1043, 267);
+            this.dgAccounts.TabIndex = 0;
             // 
             // gbAccountType
             // 
-            this.gbAccountType.Controls.Add(this.button5);
-            this.gbAccountType.Controls.Add(this.button6);
+            this.gbAccountType.Controls.Add(this.btnATRefresh);
+            this.gbAccountType.Controls.Add(this.btnATSave);
             this.gbAccountType.Controls.Add(this.btnATEdit);
             this.gbAccountType.Controls.Add(this.btnAccountTypeNew);
             this.gbAccountType.Controls.Add(this.tbATRemarks);
@@ -286,25 +288,26 @@
             this.gbAccountType.Size = new System.Drawing.Size(332, 256);
             this.gbAccountType.TabIndex = 3;
             this.gbAccountType.TabStop = false;
-            this.gbAccountType.Text = "Account Type";
+            this.gbAccountType.Text = "Account Group";
             // 
-            // button5
+            // btnATRefresh
             // 
-            this.button5.Location = new System.Drawing.Point(244, 209);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(56, 23);
-            this.button5.TabIndex = 18;
-            this.button5.Text = "Refresh";
-            this.button5.UseVisualStyleBackColor = true;
+            this.btnATRefresh.Location = new System.Drawing.Point(244, 209);
+            this.btnATRefresh.Name = "btnATRefresh";
+            this.btnATRefresh.Size = new System.Drawing.Size(56, 23);
+            this.btnATRefresh.TabIndex = 18;
+            this.btnATRefresh.Text = "Refresh";
+            this.btnATRefresh.UseVisualStyleBackColor = true;
+            this.btnATRefresh.Click += new System.EventHandler(this.btnATRefresh_Click);
             // 
-            // button6
+            // btnATSave
             // 
-            this.button6.Location = new System.Drawing.Point(187, 209);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(51, 23);
-            this.button6.TabIndex = 17;
-            this.button6.Text = "Save";
-            this.button6.UseVisualStyleBackColor = true;
+            this.btnATSave.Location = new System.Drawing.Point(187, 209);
+            this.btnATSave.Name = "btnATSave";
+            this.btnATSave.Size = new System.Drawing.Size(51, 23);
+            this.btnATSave.TabIndex = 17;
+            this.btnATSave.Text = "Save";
+            this.btnATSave.UseVisualStyleBackColor = true;
             // 
             // btnATEdit
             // 
@@ -423,8 +426,8 @@
             // 
             // gbAccountStatement
             // 
-            this.gbAccountStatement.Controls.Add(this.button9);
-            this.gbAccountStatement.Controls.Add(this.button10);
+            this.gbAccountStatement.Controls.Add(this.btnASRefresh);
+            this.gbAccountStatement.Controls.Add(this.btnASSave);
             this.gbAccountStatement.Controls.Add(this.btnASEdit);
             this.gbAccountStatement.Controls.Add(this.btnAccountStatementNew);
             this.gbAccountStatement.Controls.Add(this.tbASRemarks);
@@ -443,25 +446,26 @@
             this.gbAccountStatement.Size = new System.Drawing.Size(332, 256);
             this.gbAccountStatement.TabIndex = 4;
             this.gbAccountStatement.TabStop = false;
-            this.gbAccountStatement.Text = "Account Statement";
+            this.gbAccountStatement.Text = "Financial Statement";
             // 
-            // button9
+            // btnASRefresh
             // 
-            this.button9.Location = new System.Drawing.Point(244, 209);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(56, 23);
-            this.button9.TabIndex = 18;
-            this.button9.Text = "Refresh";
-            this.button9.UseVisualStyleBackColor = true;
+            this.btnASRefresh.Location = new System.Drawing.Point(244, 209);
+            this.btnASRefresh.Name = "btnASRefresh";
+            this.btnASRefresh.Size = new System.Drawing.Size(56, 23);
+            this.btnASRefresh.TabIndex = 18;
+            this.btnASRefresh.Text = "Refresh";
+            this.btnASRefresh.UseVisualStyleBackColor = true;
+            this.btnASRefresh.Click += new System.EventHandler(this.btnASRefresh_Click);
             // 
-            // button10
+            // btnASSave
             // 
-            this.button10.Location = new System.Drawing.Point(187, 209);
-            this.button10.Name = "button10";
-            this.button10.Size = new System.Drawing.Size(51, 23);
-            this.button10.TabIndex = 17;
-            this.button10.Text = "Save";
-            this.button10.UseVisualStyleBackColor = true;
+            this.btnASSave.Location = new System.Drawing.Point(187, 209);
+            this.btnASSave.Name = "btnASSave";
+            this.btnASSave.Size = new System.Drawing.Size(51, 23);
+            this.btnASSave.TabIndex = 17;
+            this.btnASSave.Text = "Save";
+            this.btnASSave.UseVisualStyleBackColor = true;
             // 
             // btnASEdit
             // 
@@ -596,7 +600,7 @@
             this.gbAccountCategory.ResumeLayout(false);
             this.gbAccountCategory.PerformLayout();
             this.groupBox3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgAccounts)).EndInit();
             this.gbAccountType.ResumeLayout(false);
             this.gbAccountType.PerformLayout();
             this.gbAccountStatement.ResumeLayout(false);
@@ -624,10 +628,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox3;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgAccounts;
         private System.Windows.Forms.GroupBox gbAccountType;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button btnATRefresh;
+        private System.Windows.Forms.Button btnATSave;
         private System.Windows.Forms.Button btnATEdit;
         private System.Windows.Forms.Button btnAccountTypeNew;
         private System.Windows.Forms.TextBox tbATRemarks;
@@ -642,8 +646,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.GroupBox gbAccountStatement;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button10;
+        private System.Windows.Forms.Button btnASRefresh;
+        private System.Windows.Forms.Button btnASSave;
         private System.Windows.Forms.Button btnASEdit;
         private System.Windows.Forms.Button btnAccountStatementNew;
         private System.Windows.Forms.TextBox tbASRemarks;

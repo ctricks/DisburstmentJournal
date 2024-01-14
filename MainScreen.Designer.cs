@@ -43,6 +43,7 @@
             this.outputVatSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.masterFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chartOfAccountsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.accountReceivablesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.usersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.rolesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -56,8 +57,7 @@
             this.tssSplitter2 = new System.Windows.Forms.ToolStripStatusLabel();
             this.tssDateTime = new System.Windows.Forms.ToolStripStatusLabel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.accountToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.referenceDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -157,13 +157,13 @@
             // masterFileToolStripMenuItem
             // 
             this.masterFileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.accountToolStripMenuItem,
             this.chartOfAccountsToolStripMenuItem,
             this.toolStripSeparator1,
             this.accountReceivablesToolStripMenuItem,
             this.usersToolStripMenuItem,
             this.rolesToolStripMenuItem,
-            this.clientsToolStripMenuItem});
+            this.clientsToolStripMenuItem,
+            this.referenceDataToolStripMenuItem});
             this.masterFileToolStripMenuItem.Name = "masterFileToolStripMenuItem";
             this.masterFileToolStripMenuItem.Size = new System.Drawing.Size(73, 20);
             this.masterFileToolStripMenuItem.Text = "&MasterFile";
@@ -173,6 +173,11 @@
             this.chartOfAccountsToolStripMenuItem.Name = "chartOfAccountsToolStripMenuItem";
             this.chartOfAccountsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.chartOfAccountsToolStripMenuItem.Text = "&Chart of Accounts";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
             // 
             // accountReceivablesToolStripMenuItem
             // 
@@ -266,17 +271,12 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // accountToolStripMenuItem
+            // referenceDataToolStripMenuItem
             // 
-            this.accountToolStripMenuItem.Name = "accountToolStripMenuItem";
-            this.accountToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.accountToolStripMenuItem.Text = "&Account";
-            this.accountToolStripMenuItem.Click += new System.EventHandler(this.accountToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(177, 6);
+            this.referenceDataToolStripMenuItem.Name = "referenceDataToolStripMenuItem";
+            this.referenceDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.referenceDataToolStripMenuItem.Text = "Reference &Data";
+            this.referenceDataToolStripMenuItem.Click += new System.EventHandler(this.referenceDataToolStripMenuItem_Click);
             // 
             // MainScreen
             // 
@@ -332,7 +332,7 @@
         private System.Windows.Forms.ToolStripMenuItem usersToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem rolesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem clientsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem accountToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem referenceDataToolStripMenuItem;
     }
 }

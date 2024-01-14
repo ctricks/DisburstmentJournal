@@ -20,7 +20,22 @@ namespace DisburstmentJournal.MasterFile
         }
 
         //Private Functions
-
+        private void RefreshRecord(GroupBox gpAccount)
+        {
+            foreach(Control ctrl in gpAccount.Controls)
+            {
+                if(ctrl is TextBox)
+                {
+                    TextBox tbAccount = (TextBox)ctrl;
+                    tbAccount.Text = String.Empty;
+                    tbAccount.Enabled = false;
+                    tbAccount.ReadOnly = true;
+                }
+            }
+            DataTable dtRecord = clsDatabase.GetAccountRecords(gpAccount.Name.Replace("gb", ""));
+            dgAccounts.DataSource = dtRecord;
+            dgAccounts.Refresh();
+        }
         private void NewEditRecord(GroupBox gpAccount,bool isEnabled = false,bool isEdit = false)
         {   
 
@@ -80,7 +95,34 @@ namespace DisburstmentJournal.MasterFile
             }
         }
 
+        private void SaveRecord(GroupBox gpAccount,string ACRO, bool isCategory = false,
+            bool isType = false, bool isMainAccount = false, bool isSubAcount = false, bool isStatement = false)
+        {
+            Dictionary<string, string> AccountInformation = new Dictionary<string, string>();
+            string IDFound = string.Empty;
 
+            foreach(Control ctrl in gpAccount.Controls)
+            {
+                if(ctrl is TextBox)
+                {
+                    TextBox tbAccount = (TextBox)ctrl;
+                    if(tbAccount.Name.Contains("ID"))
+                    {
+                        if(string.IsNullOrEmpty(tbAccount.Text))
+                        {
+                            MessageBox.Show("Error in Saving Account information. Please check your ID first", "Error saving " + gpAccount.Name, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return;
+                        }
+                        IDFound = tbAccount.Text;
+                    }
+                    AccountInformation.Add(tbAccount.Name.Replace("tb",""), tbAccount.Text);
+                }
+            }
+            bool isInsert = !clsDatabase.isRecordFound("ID", "[MASTER_ACCOUNT_TABLE]", " where ID = " + IDFound);
+            
+            int Result = clsDatabase.SaveAccountRecords(AccountInformation,ACRO,isInsert,isCategory,isType,isMainAccount,isSubAcount,isStatement);
+            RefreshRecord(gpAccount);
+        }
         private void NumberValidation(KeyPressEventArgs e, TextBox tbField)
         {
             if (e.KeyChar != '\b' && e.KeyChar.ToString().Trim() != "")
@@ -156,6 +198,26 @@ namespace DisburstmentJournal.MasterFile
         private void btnATEdit_Click(object sender, EventArgs e)
         {
             NewEditRecord(gbAccountType, true, true);
+        }
+
+        private void btnACSave_Click(object sender, EventArgs e)
+        {
+            SaveRecord(gbAccountCategory, "AC", true);
+        }
+
+        private void btnACRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshRecord(gbAccountCategory);
+        }
+
+        private void btnASRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshRecord(gbAccountStatement);
+        }
+
+        private void btnATRefresh_Click(object sender, EventArgs e)
+        {
+            RefreshRecord(gbAccountType);
         }
     }
 }
