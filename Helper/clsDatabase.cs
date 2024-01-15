@@ -10,6 +10,7 @@ using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Globalization;
 using System.Net.Http.Headers;
+using System.CodeDom;
 
 namespace DisburstmentJournal.Helper
 {
@@ -356,7 +357,26 @@ namespace DisburstmentJournal.Helper
             return dt;
         }
     //End Here
+    //Get ReferenceData records
+        public static DataTable GetReferenceDataRecords(out string ErrMsg,string Criteria)
+        {
+            DataTable dt = new DataTable();
+            ErrMsg = string.Empty;
 
+            try
+            {
+                string SQLQuery = "Select * From [MASTER_REFERENCE_DATA] " +  Criteria + " order by ID asc";
+                dt = dtResult(SQLQuery);
+            }
+            catch (Exception ex)
+            {
+                ErrMsg = ex.Message.ToString();
+                throw;
+            }
+
+            return dt;
+        }
+    //End Here
     //Get Accounts records
         public static DataTable GetAccountRecords(string RecordType)
         {

@@ -50,9 +50,25 @@ namespace DisburstmentJournal.Helper
             tmr.Enabled = true;
             tmr.Start();
         }
-        
-        
 
         
+        public static void ComponentStatus(GroupBox gp, bool isEnabled = true, bool isClear = false)
+        {
+            foreach (Control ctrl in gp.Controls)
+            {
+                if (ctrl is TextBox)
+                {
+                    ctrl.Enabled = isEnabled;
+
+                    if (ctrl.Name == "tbID")
+                        ctrl.Enabled = false;
+
+                    if (isClear)
+                        ctrl.Text = String.Empty;
+                }
+            }
+        }
+
+
     }
 }

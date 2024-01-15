@@ -29,10 +29,10 @@ namespace DisburstmentJournal.MasterFile
         }
         private void NewForm()
         {
-            DialogResult dr = MessageBox.Show("This will create a new form. Would you like to continue?", "New form?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult dr = MessageBox.Show("This will create a new record. Would you like to continue?", "New form?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                ComponentStatus(true, true);
+                clsUI.ComponentStatus(groupBox3, true, true);
 
                 string ErrMsg = string.Empty;
 
@@ -83,7 +83,7 @@ namespace DisburstmentJournal.MasterFile
                 if (clsDatabase.InsertUpdateCompany(CompanyInfo, IntValue, cbIsEnabled.Checked, isInsert))
                 {
                     MessageBox.Show("Record successfully saved.", tbCompanyCode.Text + " saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ComponentStatus(true, true);
+                    clsUI.ComponentStatus(groupBox3, true, true);
 
                     string ErrorMessage = string.Empty;
                     DataTable dtResult = clsDatabase.GetCompanyRecords(out ErrorMessage, "");
@@ -91,12 +91,12 @@ namespace DisburstmentJournal.MasterFile
                     dgRecords.DataSource = dtResult;
                     dgRecords.Refresh();
 
-                    ComponentStatus(false, true);
+                    clsUI.ComponentStatus(groupBox3, false, true);
                     cbIsEnabled.Checked = false;
                 }
                 else
                 {
-                    ComponentStatus(false, true);
+                    clsUI.ComponentStatus(groupBox3,false, true);
                 }
 
                 cbIsEnabled.Enabled = false;
@@ -115,11 +115,11 @@ namespace DisburstmentJournal.MasterFile
                     return;
                 }
 
-                ComponentStatus(false, false);
+                clsUI.ComponentStatus(groupBox3, false, false);
                 tbCompanyCode.Focus();
                 cbIsEnabled.Enabled = true;
 
-                ComponentStatus(true, false);
+                clsUI.ComponentStatus(groupBox3, true, false);
 
             }
         }
@@ -128,7 +128,7 @@ namespace DisburstmentJournal.MasterFile
             DialogResult dr = MessageBox.Show("This will clear all your input. Would you like to continue?", "Clear entry?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (dr == DialogResult.Yes)
             {
-                ComponentStatus(false, true);
+                clsUI.ComponentStatus(groupBox3,false, true);
                 tbCompanyCode.Focus();
             }
         }
@@ -136,22 +136,6 @@ namespace DisburstmentJournal.MasterFile
         //Ends here
 
         //Local Functions
-        private void ComponentStatus(bool isEnabled = true, bool isClear = false)
-        {
-            foreach (Control ctrl in this.groupBox3.Controls)
-            {
-                if (ctrl is TextBox)
-                {
-                    ctrl.Enabled = isEnabled;
-
-                    if (ctrl.Name == "tbID")
-                        ctrl.Enabled = false;
-
-                    if (isClear)
-                        ctrl.Text = String.Empty;
-                }
-            }
-        }
         private void NumberValidation(KeyPressEventArgs e, TextBox tbField)
         {
             if (e.KeyChar != '\b' && e.KeyChar.ToString().Trim() != "")
@@ -233,7 +217,7 @@ namespace DisburstmentJournal.MasterFile
             dgRecords.DataSource = dtAllRecords;
             dgRecords.Refresh();
 
-            ComponentStatus(false, true);
+            clsUI.ComponentStatus(groupBox3,false, true);
 
             cbIsEnabled.Checked = false;
             cbIsEnabled.Enabled = false;
@@ -271,7 +255,7 @@ namespace DisburstmentJournal.MasterFile
             dgRecords.Refresh();
 
 
-            ComponentStatus(false, true);
+            clsUI.ComponentStatus(groupBox3,false, true);
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -312,7 +296,7 @@ namespace DisburstmentJournal.MasterFile
 
         private void btnClear2_Click(object sender, EventArgs e)
         {
-            ComponentStatus(false, true);
+            clsUI.ComponentStatus(groupBox3, false, true);
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -363,7 +347,7 @@ namespace DisburstmentJournal.MasterFile
 
         private void dgRecords_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            ComponentStatus(false, false);
+            clsUI.ComponentStatus(groupBox3, false, false);
             LoadSelectedRecord(e.RowIndex, e.ColumnIndex, dgRecords);
         }
     }
